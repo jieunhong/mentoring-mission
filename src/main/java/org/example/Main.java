@@ -65,7 +65,10 @@ public class Main {
      * 3. 가게별 하루 총 매출 계산
      */
     public static Long calculateTotalSales(Store store) {
-        return 0L;
+        return (Long) orderList.stream()
+                .filter(order -> !order.getCanceled())
+                .filter(order -> order.getStore().getCode().equals(store.getCode()))
+                .mapToLong(order -> order.getFoodList().stream().mapToLong(food -> food.getPrice()).sum()).sum();
     }
 
     /**
