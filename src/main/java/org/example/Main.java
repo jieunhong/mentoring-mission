@@ -53,7 +53,7 @@ public class Main {
     public static void addOrder(Store store, List<Food> foodList) {
 
         foodList.forEach(food -> {
-            if (!store.getFoodList().contains(food)) {
+            if (!store.getMenuList().contains(food)) {
                 System.out.println("에러: 유효한 주문이 아닙니다. (주문한 메뉴 미존재");
             }
         });
