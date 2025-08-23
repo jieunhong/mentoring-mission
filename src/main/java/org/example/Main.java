@@ -3,6 +3,7 @@ package org.example;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import org.example.domain.Food;
 import org.example.domain.Store;
 import org.example.domain.Order;
@@ -72,6 +73,22 @@ public class Main {
      * 4. 가게별 객단가 계산
      */
     public static Long calculateAverageOrderValue(Store store) {
-        return 0L;
+
+        List<Order> validOrders = orderList.stream()
+                                           .filter(order -> order.getStore().getCode().equals(store.getCode()))
+                                           .filter(order -> !order.getCanceled())
+                                           .collect(Collectors.toList());
+
+        Long totalRevenue = validOrders.stream()
+                                       .mapToLong(order ->
+                                           order.getFoodList().stream()
+                                                .mapToLong(food -> food.getPrice())
+                                                .sum()
+                                       )
+                                       .sum();
+
+        double averageOrderValue = (double) totalRevenue / validOrders.size();
+
+        return (long) averageOrderValue;
     }
 }
