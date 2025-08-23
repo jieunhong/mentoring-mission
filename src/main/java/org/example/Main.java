@@ -66,8 +66,7 @@ public class Main {
             }
         }
 
-        Order order = new Order((long) (orderList.size() + 1), store, foodList);
-        orderList.add(order);
+        orderList.add(new Order((long) (orderList.size() + 1), store, foodList));
 
     }
 
