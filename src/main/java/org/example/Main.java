@@ -55,6 +55,7 @@ public class Main {
         foodList.forEach(food -> {
             if (!store.getMenuList().contains(food)) {
                 System.out.println("에러: 유효한 주문이 아닙니다. (주문한 메뉴 미존재");
+                return;
             }
         });
 
