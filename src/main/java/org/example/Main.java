@@ -59,12 +59,12 @@ public class Main {
 
         }
 
-        foodList.forEach(food -> {
+        for (Food food : foodList) {
             if (!store.getMenuList().contains(food)) {
                 System.out.println("에러: 유효한 주문이 아닙니다. (주문한 메뉴 미존재");
                 return;
             }
-        });
+        }
 
         Order order = new Order((long) (orderList.size() + 1), store, foodList);
         orderList.add(order);
