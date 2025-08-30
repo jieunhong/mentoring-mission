@@ -53,6 +53,22 @@ public class Main {
      */
     public static void addOrder(Store store, List<Food> foodList) {
 
+        if (foodList.isEmpty()) {
+
+            System.out.println("에러: 메뉴를 적어도 하나 선택해주세요.");
+            return;
+
+        }
+
+        for (Food food : foodList) {
+            if (!store.getMenuList().contains(food)) {
+                System.out.println("에러: 유효한 주문이 아닙니다. (주문한 메뉴 미존재");
+                return;
+            }
+        }
+
+        orderList.add(new Order((long) (orderList.size() + 1), store, foodList));
+
     }
 
     /**
