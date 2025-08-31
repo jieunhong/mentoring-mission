@@ -6,7 +6,7 @@ public class Store {
 
     String code;
     String name;
-    List<Food> foodList;
+    List<Food> menuList;
 
     public String getCode() {
         return code;
@@ -24,18 +24,18 @@ public class Store {
         this.name = name;
     }
 
-    public List<Food> getFoodList() {
-        return foodList;
+    public List<Food> getMenuList() {
+        return menuList;
     }
 
-    public void setFoodList(List<Food> foodList) {
-        this.foodList = foodList;
+    public void setMenuList(List<Food> menuList) {
+        this.menuList = menuList;
     }
 
-    public Store(String code, String name, List<Food> foodList) {
+    public Store(String code, String name, List<Food> menuList) {
         this.code = code;
         this.name = name;
-        this.foodList = foodList;
+        this.menuList = menuList;
     }
 
 }
