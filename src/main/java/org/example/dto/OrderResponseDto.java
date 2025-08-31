@@ -1,16 +1,11 @@
 package org.example.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
-@Getter
-@RequiredArgsConstructor
+@Data
 @Builder
-@ToString
 public class OrderResponseDto {
     // TODO: 멘티가 직접 구현할 부분
     private Long orderId;

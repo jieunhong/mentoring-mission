@@ -4,9 +4,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@RequiredArgsConstructor
-@ToString
+@Data
 @Builder
 public class OrderRequestDto {
     // TODO: 멘티가 직접 구현할 부분
