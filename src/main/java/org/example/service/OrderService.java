@@ -48,7 +48,18 @@ public class OrderService {
      */
     public ApiResponseDto<String> cancelOrder(Long id) {
         // TODO: 멘티가 직접 구현할 부분
-        return null;
+        for(Order order : orderList) {
+
+            if(order.getId().equals(id)) {
+                order.setCanceled(true); // isCanceled 플래그를 true로 설정
+                order.setCanceledAt(java.time.LocalDateTime.now()); // 취소 시간 기록
+
+                return ApiResponseDto.success("주문이 정상적으로 취소되었습니다.","주문 ID: " + id);
+
+            } else {return ApiResponseDto.error("주문 ID: " + id + " 가 존재하지 않습니다.");{
+
+        }
+
     }
 
     /**
