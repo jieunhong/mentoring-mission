@@ -58,10 +58,6 @@ public class Main {
      * 2. 취소하기
      */
     public static void cancelOrder(Long id) {
-        // 취소하고 싶은 id가 있는 상태.
-        // 1. id와 order id가 같은지 비교한다. -> .equal()로 비교
-        // 2. 같으면 isCanceled 를 true로 바꾼다, 다르다면 주문 내역이 없다고 노출한다.
-
 
         orderList.stream()
                 .filter(order -> order.getId().equals(id))
