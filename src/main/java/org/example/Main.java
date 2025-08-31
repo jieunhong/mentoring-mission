@@ -79,20 +79,18 @@ public class Main {
      * 2. 취소하기
      */
     public static void cancelOrder(Long id) {
-        // 취소하고 싶은 id가 있는 상태.
-        // 1. id와 order id가 같은지 비교한다. -> .equal()로 비교
-        // 2. 같으면 isCanceled 를 true로 바꾼다, 다르다면 주문 내역이 없다고 노출한다.
 
-        for(Order order : orderList) {
+        orderList.stream()
+                .filter(order -> order.getId().equals(id))
+                .forEach(order -> {
+                    order.setCanceled(true);
+                    order.setCanceledAt(java.time.LocalDateTime.now());
+                    System.out.println("주문 ID: " + id + " 가 취소되었습니다.");
+                });
 
-            if(order.getId().equals(id)) {
-                order.setCanceled(true); // isCanceled 플래그를 true로 설정
-                order.setCanceledAt(java.time.LocalDateTime.now()); // 취소 시간 기록
-                System.out.println("주문 ID: " + id + " 가 취소되었습니다.");
-            }
-
-        }
+        
     }
+
 
     /**
      * 3. 가게별 하루 총 매출 계산
