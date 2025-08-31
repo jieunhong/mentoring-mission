@@ -58,9 +58,9 @@ public class OrderService {
         }
 
         //stream 사용 시 return 불가능 하므로 for 사용
-        for (String food : requestDto.getFoodList()) {
+        for (String foodName : requestDto.getFoodList()) {
 
-            if (!storeMap.get(requestDto.getCode()).getMenuList().contains(food)) {
+            if (storeMap.get(requestDto.getCode()).getMenuList().stream().noneMatch(food -> food.getTitle().equals(foodName))) {
                 return new ApiResponseDto<>(false, "에러: 유효한 주문이 아닙니다. (주문한 메뉴 미존재)", null);
             }
 
