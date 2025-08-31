@@ -42,12 +42,12 @@ public class Main {
 
         // 계산 테스트
         System.out.println("\n=== 가게 1 결산 ===");
-        System.out.println("매출 : " + calculateTotalSales(store1) + "원");
+//        System.out.println("매출 : " + calculateTotalSales(store1) + "원");
         System.out.println("객단가 : " + calculateAverageOrderValue(store1) + "원");
 
         // 계산 테스트
         System.out.println("\n=== 가게 2 결산 ===");
-        System.out.println("매출 : " + calculateTotalSales(store2) + "원");
+//        System.out.println("매출 : " + calculateTotalSales(store2) + "원");
         System.out.println("객단가 : " + calculateAverageOrderValue(store2) + "원");
 
     }
@@ -94,15 +94,15 @@ public class Main {
         }
     }
 
-    /**
-     * 3. 가게별 하루 총 매출 계산
-     */
-    public static Long calculateTotalSales(Store store) {
-        return (Long) orderList.stream()
-                .filter(order -> !order.getCanceled())
-                .filter(order -> order.getStore().getCode().equals(store.getCode()))
-                .mapToLong(order -> order.getFoodList().stream().mapToLong(food -> food.getPrice()).sum()).sum();
-    }
+//    /**
+//     * 3. 가게별 하루 총 매출 계산
+//     */
+//    public static Long calculateTotalSales(Store store) {
+//        return (Long) orderList.stream()
+//                .filter(order -> !order.getCanceled())
+//                .filter(order -> order.getStore().getCode().equals(store.getCode()))
+//                .mapToLong(order -> order.getFoodList().stream().mapToLong(food -> food.getPrice()).sum()).sum();
+//    }
 
     /**
      * 4. 가게별 객단가 계산
@@ -110,17 +110,17 @@ public class Main {
     public static Long calculateAverageOrderValue(Store store) {
 
         List<Order> validOrders = orderList.stream()
-                                           .filter(order -> order.getStore().getCode().equals(store.getCode()))
-                                           .filter(order -> !order.getCanceled())
-                                           .collect(Collectors.toList());
+                .filter(order -> order.getStore().getCode().equals(store.getCode()))
+                .filter(order -> !order.getCanceled())
+                .collect(Collectors.toList());
 
         Long totalRevenue = validOrders.stream()
-                                       .mapToLong(order ->
-                                           order.getFoodList().stream()
-                                                .mapToLong(food -> food.getPrice())
-                                                .sum()
-                                       )
-                                       .sum();
+                .mapToLong(order ->
+                        order.getFoodList().stream()
+                                .mapToLong(food -> food.getPrice())
+                                .sum()
+                )
+                .sum();
 
         double averageOrderValue = (double) totalRevenue / validOrders.size();
 

@@ -40,8 +40,8 @@ public class OrderController {
      */
     @GetMapping("/sales/{storeCode}")
     public ResponseEntity<ApiResponseDto<SalesResponseDto>> calculateTotalSales(@PathVariable String storeCode) {
-        // TODO: 멘티가 직접 구현할 부분
-        return null;
+        System.out.println(storeCode);
+        return ResponseEntity.ok(orderService.calculateTotalSales(storeCode));
     }
 
     /**
