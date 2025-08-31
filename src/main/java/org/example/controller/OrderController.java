@@ -21,7 +21,9 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<ApiResponseDto<OrderResponseDto>> addOrder(@RequestBody OrderRequestDto requestDto) {
         // TODO: 멘티가 직접 구현할 부분
-        return null;
+
+        return ResponseEntity.ok(orderService.addOrder(requestDto));
+
     }
 
     /**
