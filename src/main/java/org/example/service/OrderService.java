@@ -55,8 +55,28 @@ public class OrderService {
      * 3. 가게별 하루 총 매출 계산
      */
     public ApiResponseDto<SalesResponseDto> calculateTotalSales(String storeCode) {
-        // TODO: 멘티가 직접 구현할 부분
-        return null;
+        var storeOrderList = orderList.stream()
+                .filter(order -> order.getCanceled())
+                .filter(order -> order.getStore().getCode().equals(storeCode));
+
+        var totalPrice = storeOrderList.mapToLong(order -> order.getFoodList().stream().mapToLong(food -> food.getPrice()).sum()).sum();
+
+        var totalCount = storeOrderList.toList().size();
+
+        SalesResponseDto.StoreData storeData = new SalesResponseDto.StoreData();
+
+        storeData.setOrderCount(totalCount);
+        storeData.setAverageOrderValue((int) totalPrice / totalCount);
+        storeData.setStoreCode(storeCode);
+        storeData.setStoreName(storeOrderList.toList().get(0).getStore().getName());
+        storeData.setTotalSales((int) totalPrice);
+
+        SalesResponseDto salesResponseDto = new SalesResponseDto();
+        salesResponseDto.setSuccess(true);
+        salesResponseDto.setMessage("성공");
+        salesResponseDto.setData(storeData);
+
+        return ApiResponseDto.success(salesResponseDto);
     }
 
     /**
