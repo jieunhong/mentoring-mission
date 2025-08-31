@@ -7,11 +7,15 @@ import java.util.stream.Collectors;
 import org.example.domain.Food;
 import org.example.domain.Store;
 import org.example.domain.Order;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class Main {
     public static List<Order> orderList = new ArrayList<>();
 
     public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
         // 테스트용 데이터 생성 및 함수 테스트
         System.out.println("=== 주문 시스템 테스트 ===\n");
 
@@ -79,15 +83,16 @@ public class Main {
         // 1. id와 order id가 같은지 비교한다. -> .equal()로 비교
         // 2. 같으면 isCanceled 를 true로 바꾼다, 다르다면 주문 내역이 없다고 노출한다.
 
-        for (Order order : orderList) {
+        for(Order order : orderList) {
 
-            if (order.getId().equals(id)) {
+            if(order.getId().equals(id)) {
                 order.setCanceled(true); // isCanceled 플래그를 true로 설정
                 order.setCanceledAt(java.time.LocalDateTime.now()); // 취소 시간 기록
                 System.out.println("주문 ID: " + id + " 가 취소되었습니다.");
             }
 
         }
+    }
 
     /**
      * 3. 가게별 하루 총 매출 계산
