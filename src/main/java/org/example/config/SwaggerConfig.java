@@ -18,8 +18,8 @@ public class SwaggerConfig {
 
     private Info apiInfo() {
         return new Info()
-                .title("Mentoring Mission Swagger")
-                .description("Codeit 6기 멘토링 미션 스웨거")
+                .title("주문 시스템 API")
+                .description("가게 주문 및 매출 관리 시스템 API 문서")
                 .version("1.0.0");
     }
 }

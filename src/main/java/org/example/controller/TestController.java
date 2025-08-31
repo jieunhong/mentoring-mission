@@ -1,15 +1,20 @@
 package org.example.controller;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "test API")
+@RequestMapping("/api/test")
 public class TestController {
 
-    @GetMapping("/test")
-    public String test(){
-        return "test";
+    @GetMapping("/health")
+    public String health() {
+        return "API 서버가 정상적으로 실행 중입니다.";
+    }
+
+    @GetMapping("/info")
+    public String info() {
+        return "주문 시스템 API 서버 v1.0";
     }
 }
