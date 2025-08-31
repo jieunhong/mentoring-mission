@@ -2,6 +2,8 @@ package org.example.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.example.domain.Food;
 import org.example.domain.Order;
 import org.example.domain.Store;
@@ -64,6 +66,24 @@ public class OrderService {
      */
     public ApiResponseDto<SalesResponseDto> calculateAverageOrderValue(String storeCode) {
         // TODO: 멘티가 직접 구현할 부분
+        List<Order> validOrders = orderList.stream()
+                .filter(order -> order.getStore().getCode().equals(storeCode))
+                .filter(order -> !order.getCanceled())
+                .collect(Collectors.toList());
+
+        Long totalRevenue = validOrders.stream()
+                .mapToLong(order ->
+                        order.getFoodList().stream()
+                                .mapToLong(food -> food.getPrice())
+                                .sum()
+                )
+                .sum();
+
+        double averageOrderValue = (double) totalRevenue / validOrders.size();
+
+        SalesResponseDto responseDto = new SalesResponseDto((Long) totalRevenue, (long) averageOrderValue);
+
+
         return null;
     }
 }
